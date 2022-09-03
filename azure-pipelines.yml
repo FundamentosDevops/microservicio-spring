@@ -28,3 +28,9 @@ steps:
     contents: |
         **/build/libs/*.jar
     targetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'sonarFree'
+    scannerMode: 'MSBuild'
+    projectKey: 'FundamentosDevops'
+    projectName: 'FundamentosDevops'
