@@ -36,4 +36,8 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'lab1-mp'
-    scannerMode: 'Other'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'microservicio-spring'
+    cliProjectName: 'microservicio-spring'
+    cliSources: '.'
