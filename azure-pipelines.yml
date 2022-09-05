@@ -33,3 +33,7 @@ steps:
     pathToPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: appJar
     publishLocation: 'Container'
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'lab1-mp'
+    scannerMode: 'Other'
