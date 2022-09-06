@@ -51,6 +51,9 @@ steps:
         sonarQubeRunAnalysis: true
         sqGradlePluginVersionChoice: 'specify'
         sonarQubeGradlePluginVersion: '3.3'
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
 - task: sonar-buildbreaker@8
   inputs:
     SonarQube: 'lab azure marcelo'
