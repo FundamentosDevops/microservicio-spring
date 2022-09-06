@@ -48,7 +48,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: true
     sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '3.3'
+    sonarQubeGradlePluginVersion: '3.2'
   displayName: 'Analyze current Branch'
 - task: SonarQubePublish@5
   inputs:
