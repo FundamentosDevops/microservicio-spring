@@ -35,9 +35,13 @@ steps:
     publishLocation: 'Container'
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'lab1-mp'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'microservicio-spring'
-    cliProjectName: 'microservicio-spring'
-    cliSources: '.'
+    SonarQube: 'lab-mp'
+    scannerMode: 'Other'
+    
+- task: SonarQubeAnalyze@5
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+- task: sonar-buildbreaker@8
+  inputs:
+    SonarQube: 'lab-mp'
