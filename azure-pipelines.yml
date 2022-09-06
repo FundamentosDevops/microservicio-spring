@@ -41,9 +41,15 @@ steps:
     cliProjectKey: 'microservicio-spring'
     cliProjectName: 'microservicio-spring'
     cliSources: '.'
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: "sonarqube"
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: true
+    sqGradlePluginVersionChoice: 'specify'
+    sonarQubeGradlePluginVersion: '3.3'
+  displayName: 'Analyze current Branch'
 - task: SonarQubePublish@5
   inputs:
     pollingTimeoutSec: '300'
-- task: sonar-buildbreaker@8
-  inputs:
-    SonarQube: 'lab-mp'
