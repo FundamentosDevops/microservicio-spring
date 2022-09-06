@@ -35,14 +35,22 @@ steps:
     publishLocation: 'Container'
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'lab-mp'
+    SonarQube: 'lab azure marcelo'
     scannerMode: 'Other'
     extraProperties: |
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
-      sonar.projectKey=johnnysoliz_FundamentosDevops
-      sonar.projectName=FundamentosDevops
+      sonar.projectKey=microservicio-spring
+
+- task: Gradle@3
+  inputs:
+        gradleWrapperFile: 'gradlew'
+        tasks: "sonarqube"
+        javaHomeOption: 'JDKVersion'
+        sonarQubeRunAnalysis: true
+        sqGradlePluginVersionChoice: 'specify'
+        sonarQubeGradlePluginVersion: '3.3'
 - task: sonar-buildbreaker@8
   inputs:
-    SonarQube: 'lab-mp'
+    SonarQube: 'lab azure marcelo'
