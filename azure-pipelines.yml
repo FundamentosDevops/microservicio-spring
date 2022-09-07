@@ -64,6 +64,10 @@ steps:
         sqGradlePluginVersionChoice: 'specify'
         sonarQubeGradlePluginVersion: '3.3'
   displayName: 'Analyze current Branch'
+- task: PublishCodeCoverageResults@1
+  inputs:
+      codeCoverageTool: 'JaCoCo'
+      summaryFileLocation: 
 
 - task: SonarQubePublish@5
   inputs:
