@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- feature-ms-johnnSoliz-mensaje
+- main
 
 pool:
   vmImage: ubuntu-latest
@@ -52,7 +52,7 @@ steps:
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=microservicio-spring
-      sonar.coverage.jacoco.xmlReportPaths=$(Pipeline.Workspace)/appJar/build/reports/jacoco/test/jacocoTestReport.xml
+      sonar.coverage.jacoco.xmlReportPaths=$(Build.ArtifactStagingDirectory)/jacocoTestReport.xml
   displayName: 'SonarQube Prepare'
 
 - task: Gradle@3
