@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- main
+- feature-ms-johnnySoliz-mensaje
 
 pool:
   vmImage: ubuntu-latest
@@ -51,7 +51,7 @@ steps:
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
-      sonar.projectKey=microservicio-spring
+      sonar.projectKey=microservicio-spring-js
       sonar.coverage.jacoco.xmlReportPaths$(Pipeline.Workspace)/appJar/build/reports/jacoco/test/jacocoTestReport.xml
   displayName: 'SonarQube Prepare'
 
