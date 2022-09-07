@@ -43,27 +43,19 @@ steps:
     downloadPath: '$(Pipeline.Workspace)'
   displayName: Descarga Jar
 
-# - task: SonarQubePrepare@5
-#   inputs:
-#     SonarQube: 'lab azure marcelo'
-#     scannerMode: 'Other'
-#     extraProperties: |
-#       # Additional properties that will be passed to the scanner,
-#       # Put one key=value per line, example:
-#       # sonar.exclusions=**/*.bin
-#       sonar.projectKey=microservicio-spring
-#       sonar.coverage.jacoco.xmlReportPaths=$(Pipeline.Workspace)/appJar/build/reports/jacoco/test/jacocoTestReport.xml
-#   displayName: 'SonarQube Prepare'
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'e-contact dev'
+    SonarQube: 'lab azure marcelo'
     scannerMode: 'Other'
     extraProperties: |
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
-      sonar.projectKey=microservicio-spring-js
+      sonar.projectKey=microservicio-spring
       sonar.coverage.jacoco.xmlReportPaths=$(Pipeline.Workspace)/appJar/build/reports/jacoco/test/jacocoTestReport.xml
+  displayName: 'SonarQube Prepare'
+- task: SonarQubeAnalyze@5
+  displayName: 'SonarQube Analyze'
 
 - task: Gradle@3
   inputs:
@@ -75,16 +67,9 @@ steps:
         sonarQubeGradlePluginVersion: '3.3'
   displayName: 'Analyze current Branch'
 
-# - task: SonarQubePublish@5
-#   inputs:
-#     pollingTimeoutSec: '300'
-# - task: sonar-buildbreaker@8
-#   inputs:
-#     SonarQube: 'lab azure marcelo'
 - task: SonarQubePublish@5
   inputs:
     pollingTimeoutSec: '300'
-- task: SonarQubeAnalyze@5
 - task: sonar-buildbreaker@8
   inputs:
-    SonarQube: 'e-contact dev'
+    SonarQube: 'lab azure marcelo'
