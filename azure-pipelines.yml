@@ -13,7 +13,7 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'build'
+    tasks: 'build JacocoTestReport'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
@@ -26,6 +26,7 @@ steps:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: |
         **/build/libs/*.jar
+        **/build/**/*.xml
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
@@ -33,6 +34,15 @@ steps:
     pathToPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: appJar
     publishLocation: 'Container'
+
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'appJar'
+    downloadPath: '$(Pipeline.Workspace)'
+  displayName: Descarga Jar
+
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'lab azure marcelo'
@@ -42,15 +52,19 @@ steps:
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=microservicio-spring
+      sonar.coverage.jacoco.xmlReportPaths=$(Pipeline.Workspace)/appJar/build/reports/jacoco/test/jacocoTestReport.xml
+  displayName: 'SonarQube Prepare'
 
 - task: Gradle@3
   inputs:
         gradleWrapperFile: 'gradlew'
-        tasks: "sonarqube"
+        tasks: "build jacocoTestReport"
         javaHomeOption: 'JDKVersion'
         sonarQubeRunAnalysis: true
         sqGradlePluginVersionChoice: 'specify'
         sonarQubeGradlePluginVersion: '3.3'
+  displayName: 'Analyze current Branch'
+
 - task: SonarQubePublish@5
   inputs:
     pollingTimeoutSec: '300'
