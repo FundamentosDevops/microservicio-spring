@@ -86,3 +86,4 @@ steps:
     repository: 'johnnysolizv/registry'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+    tags: 'microservicio-spring-$(Build.BuildId)'
