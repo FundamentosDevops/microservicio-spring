@@ -71,3 +71,6 @@ steps:
 - task: sonar-buildbreaker@8
   inputs:
     SonarQube: 'lab azure marcelo'
+
+- script: "mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs"  
+  displayName:  Se mueve JAR a carpeta raiz
