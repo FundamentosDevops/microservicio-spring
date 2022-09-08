@@ -74,3 +74,16 @@ steps:
 
 - script: "mkdir -p build/libs; mv $(Pipeline.Workspace)/appJar/build/libs/ build/; chmod -R 555 build/libs"  
   displayName:  Se mueve JAR a carpeta raiz
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'registry'
+    command: 'login'
+  displayName: Docker registry login
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker Hub registry'
+    repository: 'registry'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+
