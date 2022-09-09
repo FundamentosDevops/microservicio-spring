@@ -126,7 +126,7 @@ steps:
   displayName: aks expose deployment
 
 - script: |
-    ipApp=$(kubectl get servicesv3 spring --output jsonpath='{.spec.clusterIP}')
+    ipApp=$(kubectl get services spring --output jsonpath='{.spec.clusterIP}')
     echo $ipApp
     URLApp=http://$ipApp:8080
     echo $URLApp
