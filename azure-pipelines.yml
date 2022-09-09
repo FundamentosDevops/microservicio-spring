@@ -119,6 +119,7 @@ steps:
     kubernetesServiceEndpoint: 'cluster_kubernetes_js'
     namespace: 'default'
     command: 'expose'
+    arguments: 'deployment spring-deployment --type=LoadBalancer --name=spring'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
     azureSubscriptionEndpointForSecrets: 'Azure subscription 1(d60162bf-52b5-4092-b2ac-0a13af2037f3)'
