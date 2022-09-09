@@ -15,7 +15,7 @@ spec:
         app: spring
     spec:
       containers:
-      - name: microservicio-spring
+      - name: spring
         image: johnnysolizv/registry:latest
         ports:
         - containerPort: 8080
