@@ -119,14 +119,14 @@ steps:
     kubernetesServiceEndpoint: 'cluster_kubernetes_js'
     namespace: 'default'
     command: 'expose'
-    arguments: 'deployment spring-deployment --type=LoadBalancer --name=spring'
+    arguments: 'deployment spring-deployment --type=LoadBalancer --name=springv3'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
     azureSubscriptionEndpointForSecrets: 'Azure subscription 1(d60162bf-52b5-4092-b2ac-0a13af2037f3)'
   displayName: aks expose deployment
 
 - script: |
-    ipApp=$(kubectl get services spring --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    ipApp=$(kubectl get servicesv3 spring --output jsonpath='{.spec.clusterIP}')
     echo $ipApp
     URLApp=http://$ipApp:8080
     echo $URLApp
