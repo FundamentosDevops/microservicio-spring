@@ -119,7 +119,7 @@ steps:
     kubernetesServiceEndpoint: 'cluster_kubernetes_js'
     namespace: 'default'
     command: 'expose'
-    arguments: 'deployment spring-deployment --type=LoadBalancer --name=springv3'
+    arguments: 'deployment spring-deployment --type=LoadBalancer --name=spring'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
     azureSubscriptionEndpointForSecrets: 'Azure subscription 1(d60162bf-52b5-4092-b2ac-0a13af2037f3)'
@@ -130,6 +130,7 @@ steps:
     echo $ipApp
     URLApp=http://$ipApp:8080
     echo $URLApp
+    curl $URLApp
     echo "##vso[task.setvariable variable=appDeploy;isOutput=true]$URLApp"
   name: getip
   displayName: Get IP
