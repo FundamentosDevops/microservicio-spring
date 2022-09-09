@@ -130,7 +130,6 @@ steps:
     echo $ipApp
     URLApp=http://$ipApp:8080
     echo $URLApp
-    curl $URLApp
     echo "##vso[task.setvariable variable=appDeploy;isOutput=true]$URLApp"
   name: getip
   displayName: Get IP
